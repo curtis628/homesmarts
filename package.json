@@ -1,0 +1,22 @@
+{
+  "name": "homesmarts",
+  "version": "0.0.1",
+  "description": "Collection of Node JS IoT programs that compose my \"smart home\"",
+  "main": "sensors.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtis628/homesmarts.git"
+  },
+  "keywords": [
+    "iot"
+  ],
+  "author": "tjcurt@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curtis628/homesmarts/issues"
+  },
+  "homepage": "https://github.com/curtis628/homesmarts#readme"
+}
