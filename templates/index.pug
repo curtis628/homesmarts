@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/css/main.css')
+  body
+    header
+        h1= title
+    section
+        fieldset
+            legend Kirah's Room
+            label(for='kirahTemp') Temperature:&nbsp;
+            input(type="text", name="kirahTemp", id="kirahTemp" value="70", size="5" disabled)
+            br
+            input(type="button", value="Turn AC ON")
+
+        fieldset
+            legend Connor's Room
+            label(for='connorTemp') Temperature:&nbsp;
+            input(type="text", name="connorTemp", id="connorTemp" value="70", size="5" disabled)
+            br
+            input(type="button", value="Turn AC ON")
+    footer Copyright &copy; Tyler Curtis
