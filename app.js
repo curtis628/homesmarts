@@ -1,20 +1,15 @@
 #!/usr/bin/env node
-
 var express = require('express')
   , logger = require('morgan')
-  , app = express()
-  , template = require('pug').compileFile(__dirname + '/templates/index.pug');
+  , app = express();
 
 app.use(logger('dev'))
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views')
 
 app.get('/', function (req, res, next) {
-  try {
-    var html = template({ title: 'Curtis HomeSmarts' })
-    res.send(html)
-  } catch (e) {
-    next(e)
-  }
+    res.render('index', { title: 'Curtis HomeSmarts'});
 })
 
 app.listen(process.env.PORT || 3000, function () {
