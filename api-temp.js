@@ -54,7 +54,7 @@ app.get('/temp', function (req, res, next) {
         console.log("celcius: " + celcius);
         var far = celcius * 9 / 5 + 32;
         console.log("fahrenheit: " + far);
-        res.send({ far: far, cel: celcius });
+        res.send({ far: Math.round(far), cel: Math.round(celcius) });
     });
 });
 
