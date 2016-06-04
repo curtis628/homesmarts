@@ -3,6 +3,7 @@ var express = require('express')
   , logger = require('morgan')
   , app = express();
 
+app.locals.pretty = true;
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'pug');

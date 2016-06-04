@@ -4,21 +4,21 @@ html(lang="en")
     title= title
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/main.css')
+    script(type='text/javascript', src="http://code.jquery.com/jquery-1.9.1.min.js")
+    script.
+        $(document).ready(function(){
+            $.get ( "/connor/temp", function(data) {
+                $("#connorTemp").val(data.far);
+            });
+        });
   body
     header
         h1= title
     section
         fieldset
-            legend Kirah's Room
-            label(for='kirahTemp') Temperature:&nbsp;
-            input(type="text", name="kirahTemp", id="kirahTemp" value="70", size="5" disabled)
-            br
-            input(type="button", value="Turn AC ON")
-
-        fieldset
             legend Connor's Room
             label(for='connorTemp') Temperature:&nbsp;
-            input(type="text", name="connorTemp", id="connorTemp" value="70", size="5" disabled)
+            input(type="text", name="connorTemp", id="connorTemp", value="Loading..." size="8" disabled)
             br
             input(type="button", value="Turn AC ON")
     footer Copyright &copy; Tyler Curtis
