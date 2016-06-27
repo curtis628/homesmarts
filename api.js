@@ -4,7 +4,10 @@ var async = require('async'),
     express = require('express'),
     app = express(),
     logger = require('morgan'),
-    i2c = require('i2c-bus');
+    i2c = require('i2c-bus'),
+    lirc_node = require('lirc_node');
+
+lirc_node.init();
 
 var i2c1;
 var PCF8591_ADDR = 0x48;
@@ -13,9 +16,34 @@ var PHOTOCELL_BYTE = 0x00,
     POT_BYTE = 0x03;
 var TIMEOUT = 2000;
 
+var ON = "BTN_1"
+var OFF = "BTN_0"
+var acSignal = OFF;
+var remote;
+
 app.use(logger('dev'))
 app.get('/test', function (req, res, next) {
     res.send("Test content");
+});
+
+app.post('/ac', function (req, res) {
+
+    if (typeof remote === 'undefined') {
+        console.log(lirc_node.remotes);
+        for (var key in lirc_node.remotes) {
+            console.log("Iterating over remote with key: %s", key);
+            remote = key;
+        }
+    }
+
+    acSignal = acSignal === ON ? OFF : ON;
+    lirc_node.irsend.send_once(remote, acSignal, function() {
+        console.log("Sent AC Signal: %s", acSignal);
+        res.send({
+            currentStatus: acSignal,
+            inverseStatus: acSignal === ON ? "OFF" : "ON"
+        });
+    });
 });
 
 function readADC(controlByte, adcCallback) {

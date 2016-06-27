@@ -21,6 +21,7 @@
   "homepage": "https://github.com/curtis628/homesmarts#readme",
   "dependencies": {
     "express": "^4.13.4",
+    "lirc_node": "0.0.4",
     "morgan": "^1.7.0",
     "pug": "^2.0.0-alpha8"
   }
