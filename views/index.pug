@@ -7,10 +7,17 @@ html(lang="en")
     script(type='text/javascript', src="http://code.jquery.com/jquery-1.9.1.min.js")
     script.
         $(document).ready(function(){
-            $.get ( "/connor/temp", function(data) {
+            $.get("/connor/temp", function(data) {
                 $("#connorTemp").val(data.far);
             });
         });
+    script.
+        var changeAC = function() {
+            $.post("/connor/ac", {}, function(data) {
+                console.log("Call to /ac successful!. data.status = %s", data.currentStatus);
+                $("#connorACbutton").val("Turn AC " + data.inverseStatus);
+            });
+        }
   body
     header
         h1= title
@@ -20,5 +27,5 @@ html(lang="en")
             label(for='connorTemp') Temperature:&nbsp;
             input(type="text", name="connorTemp", id="connorTemp", value="Loading..." size="8" disabled)
             br
-            input(type="button", value="Turn AC ON")
+            input(type="button", id="connorACbutton" value="Turn AC ON" onclick="changeAC()")
     footer Copyright &copy; Tyler Curtis
